@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Profile</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #f4efe7;
+            --card: #fffaf3;
+            --text: #1e1b18;
+            --muted: #6b6258;
+            --accent: #c96f3b;
+            --accent-dark: #8f4a24;
+            --border: #e7d8c7;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Georgia, "Times New Roman", serif;
+            background:
+                radial-gradient(circle at top left, rgba(201, 111, 59, 0.18), transparent 35%),
+                linear-gradient(135deg, #f8f3ed, var(--bg));
+            color: var(--text);
+            display: grid;
+            place-items: center;
+            padding: 24px;
+        }
+
+        .profile-card {
+            width: min(760px, 100%);
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 18px 48px rgba(62, 37, 22, 0.12);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-dark);
+            margin-bottom: 14px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            line-height: 1.05;
+        }
+
+        .headline {
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            margin-top: 28px;
+        }
+
+        .section {
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.55);
+        }
+
+        .section h2 {
+            margin-top: 0;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-dark);
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .skills li {
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: #f3e1d3;
+            color: #6b3d22;
+            font-size: 0.95rem;
+        }
+
+        .meta {
+            display: grid;
+            gap: 12px;
+        }
+
+        .meta strong {
+            display: block;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent-dark);
+            margin-bottom: 4px;
+        }
+
+        a {
+            color: var(--accent-dark);
+        }
+
+        @media (max-width: 700px) {
+            .profile-card {
+                padding: 22px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="profile-card">
+        <span class="eyebrow">MVC Flask Demo</span>
+        <h1>{{ developer.name }}</h1>
+        <p class="headline">{{ developer.role }} · {{ developer.location }}</p>
+
+        <section class="grid">
+            <article class="section">
+                <h2>Sobre el developer</h2>
+                <p>{{ developer.about }}</p>
+            </article>
+
+            <aside class="section">
+                <h2>Resumen</h2>
+                <div class="meta">
+                    <div>
+                        <strong>Experiencia</strong>
+                        <span>{{ developer.experience_years }} años</span>
+                    </div>
+                    <div>
+                        <strong>Email</strong>
+                        <a href="mailto:{{ developer.email }}">{{ developer.email }}</a>
+                    </div>
+                    <div>
+                        <strong>GitHub</strong>
+                        <a href="{{ developer.github }}" target="_blank" rel="noreferrer">Ver perfil</a>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="section" style="margin-top: 24px;">
+            <h2>Skills</h2>
+            <ul class="skills">
+                {% for skill in developer.skills %}
+                    <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
