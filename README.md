@@ -2,7 +2,7 @@
 
 Proyecto base con arquitectura MVC en Python Flask. Incluye una vista principal `index.html` que muestra el perfil de un developer.
 
-## Estructura del proyecto
+## Estructura del proyecto JFJF
 
 ```text
 aws-python/
